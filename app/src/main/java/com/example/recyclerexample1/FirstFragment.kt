@@ -28,6 +28,8 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // step 6 : final step -> linking recycler and adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val adapter = NameAdapter(requireActivity(), getStudentNames())
         binding.recyclerView.adapter = adapter
@@ -38,6 +40,7 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 
+    // step 1: creating or getting the data
     private fun getStudentNames(): List<String> {
         val nameList = listOf<String>(
             "Rohit Rai",
@@ -76,8 +79,12 @@ class FirstFragment : Fragment() {
         return nameList
     }
 
+    // step 2 and 3 : add a layout for single item and then add recycler to fragment
+    // step 4: create the adapter
     class NameAdapter(private val context: Context, private val studentList: List<String>) :
         RecyclerView.Adapter<NameAdapter.NameHolder>() {
+
+        // step 5: create the holder as inner class
         class NameHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             val textStdName: TextView = view.findViewById(R.id.textStdName)
         }
